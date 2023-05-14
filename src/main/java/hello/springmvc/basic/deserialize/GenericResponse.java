@@ -1,15 +1,13 @@
 package hello.springmvc.basic.deserialize;
 
-import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
-@Getter
 public class GenericResponse<T> {
 
-	private boolean status;
-	private int code;
-	private T data;
+	public boolean status;
+	public int code;
+	public T data;
 
 	@Override
 	public String toString() {
