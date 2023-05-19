@@ -2,6 +2,9 @@ package hello.springmvc.basic.jackson.domain;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.NoArgsConstructor;
+
+@NoArgsConstructor
 public class Member12 {
 
 	@JsonProperty("name") // 직렬화 시 설정할 수 있는 이름을 지정

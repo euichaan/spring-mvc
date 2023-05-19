@@ -20,6 +20,7 @@ import hello.springmvc.basic.jackson.domain.Member;
 import hello.springmvc.basic.jackson.domain.Member10;
 import hello.springmvc.basic.jackson.domain.Member11;
 import hello.springmvc.basic.jackson.domain.Member12;
+import hello.springmvc.basic.jackson.domain.Member13;
 import hello.springmvc.basic.jackson.domain.Member2;
 import hello.springmvc.basic.jackson.domain.Member3;
 import hello.springmvc.basic.jackson.domain.Member4;
@@ -182,6 +183,13 @@ public class JacksonTest {
 	void json_property() throws JsonProcessingException {
 		final Member12 member12 = new Member12("Chan");
 		final String result = objectMapper.writeValueAsString(member12);
+		System.out.println(result);
+	}
+
+	@Test
+	void json_serialize_using() throws JsonProcessingException {
+		final Member13 member = new Member13(1, "Chan");
+		final String result = objectMapper.writeValueAsString(member);
 		System.out.println(result);
 	}
 }
