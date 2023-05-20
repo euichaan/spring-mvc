@@ -21,6 +21,7 @@ import hello.springmvc.basic.jackson.domain.Member10;
 import hello.springmvc.basic.jackson.domain.Member11;
 import hello.springmvc.basic.jackson.domain.Member12;
 import hello.springmvc.basic.jackson.domain.Member13;
+import hello.springmvc.basic.jackson.domain.Member14;
 import hello.springmvc.basic.jackson.domain.Member2;
 import hello.springmvc.basic.jackson.domain.Member3;
 import hello.springmvc.basic.jackson.domain.Member4;
@@ -191,5 +192,19 @@ public class JacksonTest {
 		final Member13 member = new Member13(1, "Chan");
 		final String result = objectMapper.writeValueAsString(member);
 		System.out.println(result);
+	}
+
+	@Test
+	void json_deserialize_using() throws JsonProcessingException {
+		String json = "{\"id\":1,\"name\":\"Chan\"}";
+		final Member14 member14 = objectMapper.readValue(json, Member14.class);
+		System.out.println(member14);
+	}
+
+	@Test
+	void json_deserialize_when_default_constructor_no_getter() throws JsonProcessingException {
+		String json = "{\"id\":1,\"name\":\"Chan\"}";
+		final Member13 member = objectMapper.readValue(json, Member13.class);
+		System.out.println(member);
 	}
 }
