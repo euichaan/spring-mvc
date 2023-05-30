@@ -6,13 +6,12 @@ import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class OrderServiceTest {
-
-	private OrderService orderService;
 
 	@Mock
 	private OrderRepository orderRepository;
@@ -20,10 +19,11 @@ class OrderServiceTest {
 	@Mock
 	private NotificationClient notificationClient;
 
+	@InjectMocks
+	private OrderService orderService;
+
 	@Test
 	void createOrderTest() {
-		orderService = new OrderService(orderRepository, notificationClient);
-
 		given(orderRepository.findOrderList()).will(invocation -> {
 			System.out.println("I'm mock orderRepository");
 			return Collections.emptyList();
