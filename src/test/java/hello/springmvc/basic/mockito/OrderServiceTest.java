@@ -5,16 +5,23 @@ import static org.mockito.BDDMockito.*;
 import java.util.Collections;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
+@ExtendWith(MockitoExtension.class)
 class OrderServiceTest {
 
 	private OrderService orderService;
 
+	@Mock
+	private OrderRepository orderRepository;
+
+	@Mock
+	private NotificationClient notificationClient;
+
 	@Test
 	void createOrderTest() {
-		final OrderRepository orderRepository = mock(OrderRepository.class);
-		final NotificationClient notificationClient = mock(NotificationClient.class);
-
 		orderService = new OrderService(orderRepository, notificationClient);
 
 		given(orderRepository.findOrderList()).will(invocation -> {
