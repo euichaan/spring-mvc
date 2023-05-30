@@ -7,16 +7,16 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
+import org.mockito.Spy;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 class OrderServiceTest {
 
-	@Mock
+	@Spy // 선택적으로 stub 할 수 있다
 	private OrderRepository orderRepository;
 
-	@Mock
+	@Spy
 	private NotificationClient notificationClient;
 
 	@InjectMocks
@@ -24,10 +24,10 @@ class OrderServiceTest {
 
 	@Test
 	void createOrderTest() {
-		given(orderRepository.findOrderList()).will(invocation -> {
-			System.out.println("I'm mock orderRepository");
+		willAnswer(invocation -> {
+			System.out.println("I'm spy orderRepository createOrder");
 			return Collections.emptyList();
-		});
+		}).given(orderRepository).createOrder();
 
 		willAnswer(invocation -> {
 			System.out.println("I'm mock notificationClient");
