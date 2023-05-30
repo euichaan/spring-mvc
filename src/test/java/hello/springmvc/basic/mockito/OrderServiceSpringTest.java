@@ -7,29 +7,29 @@ import java.util.Collections;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.boot.test.mock.mockito.SpyBean;
 
 @SpringBootTest
 class OrderServiceSpringTest {
 
-	@MockBean // MockBean으로 mock 객체를 스프링 컨텍스트에 등록
+	@SpyBean
 	private OrderRepository orderRepository;
 
-	@MockBean
+	@SpyBean
 	private NotificationClient notificationClient;
 
-	@Autowired // @MockBean으로 등록한 mock 객체를 주입받아서 의존성 해결
+	@Autowired
 	private OrderService orderService;
 
 	@Test
 	void createOrderTest() {
 		willAnswer(invocation -> {
-			System.out.println("I'm mockBean orderRepository");
+			System.out.println("I'm spy orderRepository");
 			return Collections.emptyList();
-		}).given(orderRepository).createOrder();
+		}).given(orderRepository).findOrderList();
 
 		willAnswer(invocation -> {
-			System.out.println("I'm mockBean notificationClient");
+			System.out.println("I'm spy notificationClient");
 			return null;
 		}).given(notificationClient).notifyToMobile();
 
